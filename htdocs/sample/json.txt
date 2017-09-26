@@ -1,0 +1,1 @@
+"O:7:\"Student\":4:{s:4:\"name\";s:11:\"Nanhe Kumar\";s:8:\"nickname\";s:11:\"kumala dewi\";s:13:\"\u0000Student\u0000roll\";i:1;s:6:\"\u0000*\u0000age\";i:16;}"
