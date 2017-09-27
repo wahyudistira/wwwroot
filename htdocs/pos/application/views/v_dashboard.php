@@ -6,16 +6,19 @@
                     </div>
                 </div> 
                 <!-- /. ROW  -->
-
+				<?php
+					$x = $record->result();
+				
+				?>
                 <div class="row">
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <div class="panel panel-primary text-center no-boder bg-color-green">
                             <div class="panel-body">
                                 <i class="fa fa-bar-chart-o fa-5x"></i>
-                                <h3>8,457</h3>
+                                <h3><?php echo number_format($x[0]->total,1,",","."); ?> </h3>
                             </div>
                             <div class="panel-footer back-footer-green">
-                                Daily Visits
+                                Monthly Income
 
                             </div>
                         </div>

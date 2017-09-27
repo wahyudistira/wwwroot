@@ -41,7 +41,7 @@ class model_transaksi extends ci_model
     
     function laporan_default()
     {
-        $query="SELECT t.tanggal_transaksi,o.nama_lengkap,sum(td.harga*td.qty) as total
+        $query="SELECT t.tanggal_transaksi,o.nama_lengkap,sum(td.harga*td.qty) as total, date(now()) AS tgl1, date(now()) as tgl2
                 FROM transaksi as t,transaksi_detail as td,operator as o
                 WHERE td.transaksi_id=t.transaksi_id and o.operator_id=t.operator_id
                 group by t.transaksi_id";
@@ -50,11 +50,21 @@ class model_transaksi extends ci_model
     
     function laporan_periode($tanggal1,$tanggal2)
     {
-        $query="SELECT t.tanggal_transaksi,o.nama_lengkap,sum(td.harga*td.qty) as total
+        $query="SELECT t.tanggal_transaksi,o.nama_lengkap,sum(td.harga*td.qty) as total, '$tanggal1' as tgl1, '$tanggal2' AS tgl2
                 FROM transaksi as t,transaksi_detail as td,operator as o
                 WHERE td.transaksi_id=t.transaksi_id and o.operator_id=t.operator_id 
                 and t.tanggal_transaksi between '$tanggal1' and '$tanggal2'
                 group by t.transaksi_id";
+				 // var_dump($query);exit;
         return $this->db->query($query);
     }
+	
+	function dailytransaction(){
+		$sql = "select sum(qty*harga) as total
+				  from transaksi_detail td 
+					INNER JOIN transaksi tr ON tr.transaksi_id = td.transaksi_id
+				  WHERE 
+					tanggal_transaksi = date(NOW())";
+		return $this->db->query($sql);
+	}
 }

@@ -6,19 +6,41 @@
                     </div>
                 </div> 
                 <!-- /. ROW  -->
-
+<?php
+$tgl1 ="";
+$tgl2 ="";
+if(count($record->result()) > 1){	
+	$rec = $record->result();
+	$tgl1 = $rec[0]->tgl1;
+	$tgl2 = $rec[0]->tgl2;
+}
+?>				
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <?php echo form_open('transaksi/laporan', array('class'=>'form-inline')); ?>
                                     <div class="form-group">
-                                        <label for="exampleInputName2">Tanggal</label>
-                                        <input type="text" name="tanggal1" class="form-control" placeholder="Tanggal Mulai">
+                                        
+										<div class="controls input-append date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+											<label for="exampleInputName2">Tanggal</label>
+											<input size="16" type="text" name="tanggal1" class="form-control" placeholder="Tanggal Mulai" readonly value=<?php echo $tgl1 ?> >
+											<span class="add-on"><i class="icon-remove"></i></span>
+											<span class="add-on"><i class="icon-th"></i></span>
+										</div>
+										
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail2"> - </label>
-                                        <input type="text" name="tanggal2" class="form-control" placeholder="Tanggal Selesai">
+                                       
+                                       <div class="controls input-append date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+											<label for="exampleInputEmail2"> - </label> 
+											<input size="16" type="text" name="tanggal2" class="form-control" placeholder="Tanggal Mulai" readonly value=<?php echo $tgl2; ?> >
+											<span class="add-on"><i class="icon-remove"></i></span>
+											<span class="add-on"><i class="icon-th"></i></span>
+											<label class="control-label">Date Picking</label>
+										</div>
+										
+                
                                     </div>
                                     <button class="btn btn-primary btn-sm" type="submit" name="submit">Tampilkan</button>
                                 </form>

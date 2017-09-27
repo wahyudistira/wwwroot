@@ -10,6 +10,9 @@
     <link href="<?php echo base_url() ?>/assets/css/font-awesome.css" rel="stylesheet" />
      <!-- Morris Chart Styles-->
    
+   <link href="<?php echo base_url() ?>/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+   <link href="<?php echo base_url() ?>/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+   
         <!-- Custom Styles-->
     <link href="<?php echo base_url() ?>/assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
@@ -104,6 +107,12 @@
     <script src="<?php echo base_url() ?>/assets/js/jquery-1.10.2.js"></script>
       <!-- Bootstrap Js -->
     <script src="<?php echo base_url() ?>/assets/js/bootstrap.min.js"></script>
+	
+	
+	<script src="<?php echo base_url() ?>/assets/js/bootstrap-datetimepicker.js"></script>
+	<script src="<?php echo base_url() ?>/assets/js/locales/bootstrap-datetimepicker.fr.js"></script>
+	
+	
     <!-- Metis Menu Js -->
     <script src="<?php echo base_url() ?>/assets/js/jquery.metisMenu.js"></script>
      <!-- DATA TABLE SCRIPTS -->
@@ -119,6 +128,41 @@
     <script src="<?php echo base_url() ?>/assets/js/morris/morris.js"></script>
     <!-- Custom Js -->
     <script src="<?php echo base_url() ?>/assets/js/custom-scripts.js"></script>
+	<script src="<?php echo base_url() ?>/assets/js/dateformat.js"></script>
+	
+	<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'eng',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	$('.form_date').datetimepicker({
+        language:  'eng',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'eng',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>
     
    
 </body>
