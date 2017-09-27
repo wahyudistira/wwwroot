@@ -20,43 +20,16 @@
                     $('div.sidebar-collapse').removeClass('collapse')
                 }
             });
+			
 
             /* MORRIS BAR CHART
 			-----------------------------------------*/
             Morris.Bar({
                 element: 'morris-bar-chart',
-                data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
-                }, {
-                    y: '2007',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2008',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2009',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2010',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2011',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2012',
-                    a: 100,
-                    b: 90
-                }],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
+                data: [ { year:'2007', profit:250000, purchase:550000, sale:800000}, { year:'2008', profit:387000, purchase:678000, sale:1065000}, { year:'2009', profit:491500, purchase:787000, sale:1278500}, { year:'2010', profit:560400, purchase:895600, sale:1456000}, { year:'2011', profit:708450, purchase:967150, sale:1675600}, { year:'2012', profit:635692, purchase:1065850, sale:1701542}, { year:'2013', profit:789400, purchase:1105600, sale:1895000}, { year:'2014', profit:791500, purchase:1465000, sale:2256500}, { year:'2015', profit:855500, purchase:1674500, sale:2530000}, { year:'2016', profit:1110000, purchase:2050000, sale:3160000}],
+                xkey: 'year',
+                ykeys: ['profit', 'purchase','sale'],
+                labels: ['profit', 'purchase','sale'],
                 hideHover: 'auto',
                 resize: true
             });
@@ -147,7 +120,7 @@
             Morris.Line({
                 element: 'morris-line-chart',
                 data: [{
-                    y: '2006',
+                    y: '2001',
                     a: 100,
                     b: 90
                 }, {

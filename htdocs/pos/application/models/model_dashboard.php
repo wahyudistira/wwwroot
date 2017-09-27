@@ -19,4 +19,17 @@ class model_dashboard extends ci_model
 		$sql ="SELECT @total AS total;";
 		return $this->db->query($sql);
 	}
+	
+		function barngsepuluhbesar(){
+			$Sql  ="SELECT
+						td.barang_id, upper(br.nama_barang) AS nama_barang, COUNT(td.barang_id) AS jml
+					FROM  transaksi_detail td, barang br
+					WHERE TRUE 
+						AND	td.barang_id = br.barang_id
+					GROUP BY td.barang_id
+					limit 5;"; // HAVING COUNT(td.barang_id) > 3
+			return $this->db->query($Sql);	
+	
+	
+		}
 }

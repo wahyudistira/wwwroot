@@ -128,8 +128,9 @@
     <script src="<?php echo base_url() ?>/assets/js/morris/morris.js"></script>
     <!-- Custom Js -->
     <script src="<?php echo base_url() ?>/assets/js/custom-scripts.js"></script>
+	<!--
 	<script src="<?php echo base_url() ?>/assets/js/dateformat.js"></script>
-	
+	-->
 	<script type="text/javascript">
     $('.form_datetime').datetimepicker({
         //language:  'eng',
