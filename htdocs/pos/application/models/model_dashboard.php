@@ -15,8 +15,9 @@ class model_dashboard extends ci_model
 					DATE_FORMAT(tanggal_transaksi ,'%m')= DATE_FORMAT(NOW(),'%m')
 					";
 		
-		$sql ="call reportCashMonhtly(@total)";
-		$sql ="SELECT @total AS total;";
+		// $sql ="call reportCashMonhtly(@total)";
+		// $sql ="SELECT @total AS total;";
+		
 		return $this->db->query($sql);
 	}
 	

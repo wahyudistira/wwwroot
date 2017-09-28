@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POS - Point Of Sale</title>
-	<!-- Bootstrap Styles-->
+	
+		<!-- Bootstrap Styles-->
     <link href="<?php echo base_url() ?>/assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
     <link href="<?php echo base_url() ?>/assets/css/font-awesome.css" rel="stylesheet" />
@@ -19,6 +20,33 @@
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
      <!-- TABLE STYLES-->
     <link href="<?php echo base_url() ?>/assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+	
+	<!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="<?php echo base_url() ?>/assets/js/jquery-1.10.2.js"></script>
+      <!-- Bootstrap Js -->
+    <script src="<?php echo base_url() ?>/assets/js/bootstrap.min.js"></script>
+	
+	
+	<script src="<?php echo base_url() ?>/assets/js/bootstrap-datetimepicker.js"></script>
+	<script src="<?php echo base_url() ?>/assets/js/locales/bootstrap-datetimepicker.fr.js"></script>
+	
+	
+    <!-- Metis Menu Js -->
+    <script src="<?php echo base_url() ?>/assets/js/jquery.metisMenu.js"></script>
+     <!-- DATA TABLE SCRIPTS -->
+    <script src="<?php echo base_url() ?>/assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url() ?>/assets/js/dataTables/dataTables.bootstrap.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+    <!-- Morris Chart Js -->
+    <script src="<?php echo base_url() ?>/assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/js/morris/morris.js"></script>
+	
+	
 </head>
 <body>
     <div id="wrapper">
@@ -86,6 +114,52 @@
                     <li>
                         <a href="<?php echo base_url().'auth/logout'?>"><i class="fa fa-fw fa-file"></i> Keluar</a>
                     </li>
+					
+					<li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="flot.html">Flot Charts</a>
+                                </li>
+                                <li>
+                                    <a href="morris.html">Morris.js Charts</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+					
+					
+					<?php
+                        // data main menu
+                        $main_menu = $this->db->get_where('dynamic_menu', array('level' => 0));
+                        foreach ($main_menu->result() as $main) {
+                            // Query untuk mencari data sub menu
+							$sql = "select * from dynamic_menu where parent_id='".$main->id."' order by id, parent_id";
+                            // $sub_menu = $this->db->get_where('dynamic_menu', array('id' => $main->parent_id))->order_by(array('id','parent_id'),'ASC');
+							$sub_menu = $this->db->query($sql);
+                            // periksa apakah ada sub menu
+                            if ($sub_menu->num_rows() > 0) {
+                                // main menu dengan sub menu
+								// var_dump($sql);exit;
+                                echo "<li class='treeview'>" . anchor($main->url, '<i class="' . $main->icon . '"></i>' . $main->title .
+                                        '<span class="pull-right-container">
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </span>');
+                                // sub menu nya disini
+                                echo "<ul class='treeview-menu'>";
+                                foreach ($sub_menu->result() as $sub) {
+                                    echo "<li>" . anchor($sub->url, '<i class="' . $sub->icon . '"></i>' . $sub->title) . "</li>";
+                                }
+                                echo"</ul></li>";
+                            } else {
+                                // main menu tanpa sub menu
+                                echo "<li>" . anchor($main->url, '<i class="' . $main->icon . '"></i>' . $main->title) . "</li>";
+                            }
+                        }
+                    ?>
+					
+					
+					
                 </ul>
 
             </div>
@@ -101,69 +175,40 @@
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>
-    <!-- /. WRAPPER  -->
-    <!-- JS Scripts-->
-    <!-- jQuery Js -->
-    <script src="<?php echo base_url() ?>/assets/js/jquery-1.10.2.js"></script>
-      <!-- Bootstrap Js -->
-    <script src="<?php echo base_url() ?>/assets/js/bootstrap.min.js"></script>
 	
-	
-	<script src="<?php echo base_url() ?>/assets/js/bootstrap-datetimepicker.js"></script>
-	<script src="<?php echo base_url() ?>/assets/js/locales/bootstrap-datetimepicker.fr.js"></script>
-	
-	
-    <!-- Metis Menu Js -->
-    <script src="<?php echo base_url() ?>/assets/js/jquery.metisMenu.js"></script>
-     <!-- DATA TABLE SCRIPTS -->
-    <script src="<?php echo base_url() ?>/assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="<?php echo base_url() ?>/assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-            });
-    </script>
-    <!-- Morris Chart Js -->
-    <script src="<?php echo base_url() ?>/assets/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="<?php echo base_url() ?>/assets/js/morris/morris.js"></script>
-    <!-- Custom Js -->
-    <script src="<?php echo base_url() ?>/assets/js/custom-scripts.js"></script>
-	<!--
-	<script src="<?php echo base_url() ?>/assets/js/dateformat.js"></script>
-	-->
 	<script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        //language:  'eng',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1
-    });
-	$('.form_date').datetimepicker({
-        language:  'eng',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	$('.form_time').datetimepicker({
-        language:  'eng',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 1,
-		minView: 0,
-		maxView: 1,
-		forceParse: 0
-    });
-</script>
+		$('.form_datetime').datetimepicker({
+			//language:  'eng',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+			showMeridian: 1
+		});
+		$('.form_date').datetimepicker({
+			language:  'eng',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+		});
+		$('.form_time').datetimepicker({
+			language:  'eng',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 1,
+			minView: 0,
+			maxView: 1,
+			forceParse: 0
+		});
+	</script>
     
    
 </body>

@@ -1,57 +1,89 @@
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<title>POS - Point Of Sale</title>
-<link href="<?php echo base_url().'assets/css/' ?>login_style.css" rel='stylesheet' type='text/css' />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--webfonts-->
-<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700|Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-<!--//webfonts-->
-<script>
-	function myFunction()
-		{
-			alert("Thanks for login");
-		}
-</script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>POS (POINT OF SALE)</title>
+
+    <!-- Bootstrap Core CSS -->
+	<link href="<?php echo base_url() ?>/assets/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- MetisMenu CSS -->
+	<link href="<?php echo base_url() ?>/assets/css/metisMenu.min.css" rel="stylesheet" />\
+	
+    <!-- Custom CSS -->
+    <link href="<?php echo base_url() ?>/assets/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="<?php echo base_url() ?>/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
- 
+
 <body>
-	<div class="main">
-		<div class="user">
-			<img src="<?php echo base_url().'assets/img/' ?>user.png" alt="">
-		</div>
-		<div class="login">
-			<div class="inset">
-				
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Sign In</h3>
+                    </div>
+                    <div class="panel-body">
 					<?php echo form_open('auth/login'); ?>
-			         <div>
-						<span><label>Username</label></span>
-						<span><input type="text" name="username" class="textbox" id="active"></span>
-					 </div>
-					 <div>
-						<span><label>Password</label></span>
-					    <span><input type="password" name="password" class="password"></span>
-					 </div>
-					<div class="sign">
-						<div class="submit">
-						  <input type="submit" name="submit" onclick="myFunction()" value="LOGIN" >
-						</div>
-						<span class="forget-pass">
-							<a href="#">Forgot Password?</a>
-						</span>
-							<div class="clear"> </div>
-					</div>
-					</form>
-				</div>
-			</div>
-		
-		</div>
-		 
-   					<div class="copy-right">
-						<p>Website : <a href="https://mim3o.blogspot.co.id">ROen's Heart</a></p> 
-					</div>
-				
-	 
+                        <form role="form">
+                            <fieldset>
+                                <div class="form-group">
+									<input class="form-control" placeholder="username" name="username" type="text"  class="textbox" autofocus >
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+								<div class="submit">
+								  <input type="submit" name="submit" class="btn btn-lg btn-success btn-block" value="Login" >
+								</div>
+										
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+	 <script src="<?php echo base_url() ?>/assets/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+	<script src="<?php echo base_url() ?>/assets/js/bootstrap.min.js"></script>
+    
+
+    <!-- Metis Menu Plugin JavaScript -->
+	<script src="<?php echo base_url() ?>/assets/js/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<?php echo base_url() ?>/assets/js/sb-admin-2.js"></script>
+
 </body>
+
 </html>
