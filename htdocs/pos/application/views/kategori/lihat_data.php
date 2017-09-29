@@ -29,7 +29,7 @@
                                                 <td><?php echo $no ?></td>
                                                 <td><?php echo $r->nama_kategori ?></td>
                                                 <td class="center">
-                                                    <?php echo anchor('kategori/edit/'.$r->kategori_id,'Edit'); ?> | 
+													<?php echo anchor('kategori/edit/'.$r->kategori_id,'<span class="label" style="background:green;">'.htmlspecialchars('edit', ENT_QUOTES, 'UTF-8').'</span>'); ?> | 
                                                     <?php echo anchor('kategori/delete/'.$r->kategori_id,'Delete'); ?>
                                                 </td>
                                             </tr>

@@ -15,7 +15,7 @@
 |
 */
 // $config['base_url']	= 'http://localhost/pos/';
-$config['base_url']	= 'http://localhost:8080/pos/';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
