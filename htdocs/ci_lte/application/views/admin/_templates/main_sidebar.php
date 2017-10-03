@@ -37,7 +37,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-home text-primary"></i> <span><?php echo lang('menu_access_website'); ?></span>
                             </a>
                         </li>
-
+<?php
+	$sql = "select * from sys_menu where level='0' order by id, parent_id";
+	$menuParent = $this->db->query($sql);
+	foreach ($menuParent->result() as $menu) {  // LEVEL 0
+		echo '<li class="'.active_link_controller($menu->activelink).'"> '; 
+		echo '<a href="'.site_url($menu->url).'">';
+		echo '<i class="'.$menu->icon.'"></i> <span>'. lang($menu->lang).'</span>';
+		echo "</a>";
+		echo "</li>";
+		
+		
+	}
+?>
                         <li class="header text-uppercase"><?php echo lang('menu_main_navigation'); ?></li>
                         <li class="<?=active_link_controller('dashboard')?>">
                             <a href="<?php echo site_url('admin/dashboard'); ?>">
