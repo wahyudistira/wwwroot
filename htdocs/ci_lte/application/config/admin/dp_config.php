@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['title']      = 'AdminLTE';
-$config['title_mini'] = 'LT';
-$config['title_lg']   = 'LTE';
+$config['title']      = 'Admin';
+$config['title_mini'] = '';
+$config['title_lg']   = '';
 
 
 

@@ -37,7 +37,7 @@ class Auth extends MY_Controller {
             /* Valid form */
             $this->form_validation->set_rules('identity', 'Identity', 'required');
             $this->form_validation->set_rules('password', 'Password', 'required');
-
+			
             /* Data */
             $this->data['title']               = $this->config->item('title');
             $this->data['title_lg']            = $this->config->item('title_lg');

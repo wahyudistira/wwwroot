@@ -17,7 +17,8 @@ $lang['menu_search'] = 'Search';
 /* * */$lang['menu_access_website']             = 'Access to the Web site';
 
 /* * */$lang['menu_main_navigation']            = 'Main Navigation';
-/* ****** */$lang['menu_dashboard']             = 'Dashboard';
+/* ****** */$lang['menu_dashboard']              = 'Dashboard';
+/* ****** */$lang['menu_utama']		              = 'Utama';
 
 
 /* * */$lang['menu_administration']             = 'Administration';
@@ -43,3 +44,10 @@ $lang['menu_search'] = 'Search';
 /* * */$lang['menu_webapp']                     = 'Web application';
 /* ****** */$lang['menu_license']               = 'License';
 /* ****** */$lang['menu_resources']             = 'Resources';
+
+/* * */$lang['menu_maintenance']             = 'Maintenance';
+
+
+/* * */$lang['menu_setting']              = 'Setting';
+/* ****** */$lang['menu_global_setting']    = 'Global Setting';
+/* *********** */$lang['menu_spesial_setting'] = 'Spesial Setting';

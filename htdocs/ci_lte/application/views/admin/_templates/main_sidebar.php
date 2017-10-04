@@ -37,71 +37,95 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <i class="fa fa-home text-primary"></i> <span><?php echo lang('menu_access_website'); ?></span>
                             </a>
                         </li>
-<?php
-	$sql = "select * from sys_menu where level='0' order by id, parent_id";
-	$menuParent = $this->db->query($sql);
-	foreach ($menuParent->result() as $menu) {  // LEVEL 0
-		echo '<li class="'.active_link_controller($menu->activelink).'"> '; 
-		echo '<a href="'.site_url($menu->url).'">';
-		echo '<i class="'.$menu->icon.'"></i> <span>'. lang($menu->lang).'</span>';
-		echo "</a>";
-		echo "</li>";
-		
-		
-	}
-?>
                         <li class="header text-uppercase"><?php echo lang('menu_main_navigation'); ?></li>
-                        <li class="<?=active_link_controller('dashboard')?>">
-                            <a href="<?php echo site_url('admin/dashboard'); ?>">
-                                <i class="fa fa-dashboard"></i> <span><?php echo lang('menu_dashboard'); ?></span>
-                            </a>
-                        </li>
-
-
-                        <li class="header text-uppercase"><?php echo lang('menu_administration'); ?></li>
-                        <li class="<?=active_link_controller('users')?>">
-                            <a href="<?php echo site_url('admin/users'); ?>">
-                                <i class="fa fa-user"></i> <span><?php echo lang('menu_users'); ?></span>
-                            </a>
-                        </li>
-                        <li class="<?=active_link_controller('groups')?>">
-                            <a href="<?php echo site_url('admin/groups'); ?>">
-                                <i class="fa fa-shield"></i> <span><?php echo lang('menu_security_groups'); ?></span>
-                            </a>
-                        </li>
-                        <li class="treeview <?=active_link_controller('prefs')?>">
-                            <a href="#">
-                                <i class="fa fa-cogs"></i>
-                                <span><?php echo lang('menu_preferences'); ?></span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li class="<?=active_link_function('interfaces')?>"><a href="<?php echo site_url('admin/prefs/interfaces/admin'); ?>"><?php echo lang('menu_interfaces'); ?></a></li>
-                            </ul>
-                        </li>
-                        <li class="<?=active_link_controller('files')?>">
-                            <a href="<?php echo site_url('admin/files'); ?>">
-                                <i class="fa fa-file"></i> <span><?php echo lang('menu_files'); ?></span>
-                            </a>
-                        </li>
-                        <li class="<?=active_link_controller('database')?>">
-                            <a href="<?php echo site_url('admin/database'); ?>">
-                                <i class="fa fa-database"></i> <span><?php echo lang('menu_database_utility'); ?></span>
-                            </a>
-                        </li>
-
-
-                        <li class="header text-uppercase"><?php echo $title; ?></li>
-                        <li class="<?=active_link_controller('license')?>">
-                            <a href="<?php echo site_url('admin/license'); ?>">
-                                <i class="fa fa-legal"></i> <span><?php echo lang('menu_license'); ?></span>
-                            </a>
-                        </li>
-                        <li class="<?=active_link_controller('resources')?>">
-                            <a href="<?php echo site_url('admin/resources'); ?>">
-                                <i class="fa fa-cubes"></i> <span><?php echo lang('menu_resources'); ?></span>
-                            </a>
-                        </li>
+                       
+			<?php
+				$sql = "SELECT * FROM vw_menulvl0 WHERE true";
+				$mnParent = $this->db->query($sql);							
+				foreach ($mnParent->result() as $menu) { 
+				$qry = "SELECT * FROM vw_menulvl1 WHERE parent_id='".$menu->id."'";
+				$mnleve11 = $this->db->query($qry);
+					if($menu->is_treeview==1){
+						echo '	<li class=treeview '.active_link_controller($menu->activelink).'>';
+						echo '	    <a href="'.$menu->url.'">';
+						echo '		  <i class="'.$menu->icon.'"></i>';
+						echo '		  	<span>'.lang($menu->lang).'</span>';
+						echo ' 	      <i class="fa fa-angle-left pull-right"></i>';
+						echo '		</a>';
+						echo '		<ul class="treeview-menu">';
+						echo '		<li>';
+						foreach($mnleve11->result() as $level1){														
+						$url = '#';
+						echo '			<a href="'.(($level1->url== $url)?'#':site_url($level1->url)).'">';
+						echo '				<i class="'.$level1->icon.'"></i> <span>'. lang($level1->lang).'</span>';
+						echo ' 	      		<i class="'.(($level1->url==$url)?'fa fa-angle-left pull-right':'').'"></i>';	
+						echo '			</a>';								
+							$qry = "SELECT * FROM vw_menulvl2 WHERE parent_id='".$level1->id."'";
+							$mnleve12 = $this->db->query($qry);
+							foreach($mnleve12->result() as $level2 ){
+								echo '	<ul class="treeview-menu">';
+								echo '	  <li>';
+								echo '      <a href="'.site_url($level2->url).'">';
+								echo '        <span>'. lang($level2->lang).'</span>';
+								echo '      </a>';
+								echo '    </li>';
+								echo '	</ul>';
+							}
+						}	
+						echo '		</li>';	
+						echo '		</ul>';							
+						echo '  </li> ';
+					}else{
+						echo '<li class="'.active_link_controller($menu->activelink).'"> ';
+						echo ' <a href="'.site_url($menu->url).'">';
+						echo '  <i class="'.$menu->icon.'"></i> <span>'. lang($menu->lang).'</span>';
+						echo " </a>";
+						echo "</li>";						
+					}					
+				}			
+			?>
                     </ul>
                 </section>
             </aside>
+			
+			
+			
+			
+			
+			
+			
+
+				<?php
+						// $sql = "SELECT * FROM vw_menulvl0 where status=12";
+						// $menuParent = $this->db->query($sql);							
+						// foreach ($menuParent->result() as $menu) {  	
+						// $query = "SELECT * FROM vw_menulvl1 WHERE parent_id='".$menu->id."'";
+						// $menuLvl1 = $this->db->query($query);		
+							// if($menu->is_treeview==1){
+								// echo '	<li class=treeview '.active_link_controller($menu->activelink).'>';
+								// echo '	<a href="#">';
+								// echo '		<i class="'.$menu->icon.'"></i>';
+								// echo '		<span>'.lang($menu->lang).'</span>';
+								// echo '		<i class="fa fa-angle-left pull-right"></i>';
+								// echo '	</a>';			
+								// foreach($menuLvl1->result() as $lvl1){
+									// $query = "SELECT * FROM vw_menulvl2 WHERE parent_id='".$lvl1->id."'";
+									// $menulvl2 = $this->db->query($query);
+									// echo '	<ul class="treeview-menu">';
+									// echo '	 <li class="'.active_link_function($lvl1->activelink).'">';
+									// echo '    <a href="'.site_url($lvl1->url).'">';
+									// echo '    <i class="'.$lvl1->icon.'"></i> <span>'. lang($lvl1->lang).'</span>';
+									// echo '	  </a>';
+									// echo '   </li>';
+									// echo '  </ul>';										
+								// }			
+								// echo ' </li>';
+							// }else{
+								// echo '<li class="'.active_link_controller($menu->activelink).'"> ';
+								// echo ' <a href="'.site_url($menu->url).'">';
+								// echo '  <i class="'.$menu->icon.'"></i> <span>'. lang($menu->lang).'</span>';
+								// echo " </a>";
+								// echo "</li>";								
+							// }	
+						// }
+					?>			

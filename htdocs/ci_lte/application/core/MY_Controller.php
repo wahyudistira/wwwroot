@@ -94,7 +94,7 @@ class Admin_Controller extends MY_Controller
 
             if ($this->router->fetch_class() == 'dashboard')
             {
-                $this->data['dashboard_alert_file_install'] = $this->core_model->get_file_install();
+                $this->data['dashboard_alert_file_install'] = NULL ; //$this->core_model->get_file_install();
                 $this->data['header_alert_file_install']    = NULL;
             }
             else

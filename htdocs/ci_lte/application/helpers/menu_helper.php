@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if ( ! function_exists('active_link_controller'))
 {
     function active_link_controller($controller)
-    {
-        $CI    =& get_instance();
+    {	
+		$CI    =& get_instance();
         $class = $CI->router->fetch_class();
-
+// var_dump($controller);  var_dump($class);		 exit;        
         return ($class == $controller) ? 'active' : NULL;
     }
 }
