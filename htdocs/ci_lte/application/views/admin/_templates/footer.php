@@ -29,5 +29,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php endif; ?>
         <script src="<?php echo base_url($frameworks_dir . '/adminlte/js/adminlte.min.js'); ?>"></script>
         <script src="<?php echo base_url($frameworks_dir . '/domprojects/js/dp.min.js'); ?>"></script>
+		<script src="<?php echo base_url($frameworks_dir . '/dataTables/js/jquery.dataTables.js'); ?>" ></script>
+		<script src="<?php echo base_url($frameworks_dir . '/dataTables/js/dataTables.bootstrap.js'); ?>" ></script>
+	<script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
     </body>
 </html>

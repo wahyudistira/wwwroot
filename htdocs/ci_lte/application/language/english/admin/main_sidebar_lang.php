@@ -51,3 +51,7 @@ $lang['menu_search'] = 'Search';
 /* * */$lang['menu_setting']              = 'Setting';
 /* ****** */$lang['menu_global_setting']    = 'Global Setting';
 /* *********** */$lang['menu_spesial_setting'] = 'Spesial Setting';
+
+/* * */$lang['menu_sys_menu_access']      	 = 'Menus';
+/* ****** */$lang['menu_acces_create']     = 'Create';
+/* *********** */$lang['menu_spesial_setting'] 	 = 'Spesial Setting';
